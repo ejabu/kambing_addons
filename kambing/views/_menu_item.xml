@@ -1,0 +1,22 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<odoo>
+    <data>
+        <menuitem 
+            id="store_main_menu" 
+            name="Penjualan" 
+            sequence="1"
+            />
+        <menuitem 
+            id="transaksi_header_menu"
+            parent="store_main_menu" 
+            name="Transaksi"
+            sequence="10"
+            />
+        <menuitem 
+            id="data_header_menu"
+            parent="store_main_menu" 
+            name="Data"
+            sequence="20"
+            />
+    </data>
+</odoo>

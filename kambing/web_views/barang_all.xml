@@ -1,0 +1,191 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <template id="barang_dagang_all_temp" name="Partner Page">
+
+<head>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"/>
+    <meta charset="utf-8"/>
+
+    <title>Ayo Berqurban !</title>
+
+    <meta name="viewport" content="width = device-width, initial-scale = 1.0" />
+
+    <meta name="author" content="Muhammad Fahreza" />
+    <link rel="canonical" href="https://ayoberqurban.net" />
+
+    <!-- <meta property="og:url" content="https://photoswipe.com">
+    <meta property="og:title" content="PhotoSwipe: Responsive JavaScript Image Gallery">
+    <meta property="og:description" content="Touch-friendly JavaScript image gallery for mobile and desktop, without dependencies. Responsive layout. Swipe and zoom gestures.">
+    <meta property="og:image" content="https://photoswipe.com/test/horizontal-swipe.jpg"> -->
+
+
+    <!-- <link rel="icon apple-touch-icon" href="test/apple-touch-icon-144x144.png" sizes="144x144" type="image/png"> -->
+    <link href="/kambing/static/site-assets/site.css?v=4.1.3-1.0.4" rel="stylesheet" />
+    <link href="/kambing/static/site-assets/photoswipe.css?v=4.1.3-1.0.4" rel="stylesheet" />
+    <link href="/kambing/static/site-assets/default-skin/default-skin.css?v=4.1.3-1.0.4" rel="stylesheet" />
+
+
+    <script src="/kambing/static/site-assets/photoswipe.min.js?v=4.1.3-1.0.4"></script>
+    <script src="/kambing/static/site-assets/photoswipe-ui-default.min.js?v=4.1.3-1.0.4"></script>
+
+
+    <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
+
+</head>
+
+<body>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" />
+    <!-- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" /> -->
+    <!-- <link href="https://fonts.googleapis.com/css?family=Raleway:400,500,500i,700,800i" rel="stylesheet" /> -->
+
+    <nav class="navbar navbar-expand-sm navbar-light bg-light">
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo03" aria-controls="navbarTogglerDemo03" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+
+        <div class="collapse navbar-collapse" id="navbarTogglerDemo03">
+            <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
+                <li class="nav-item dropdown dmenu">
+                    <a class="nav-link dropdown-toggle" href="#" id="navbardrop" data-toggle="dropdown" aria-expanded="false">
+                        Kategori
+                    </a>
+                    <div class="dropdown-menu sm-menu" style="display: none;">
+                        <a class="dropdown-item" href="./betina-a">Betina A</a>
+                        <a class="dropdown-item" href="./betina-b">Betina B</a>
+                        <a class="dropdown-item" href="./jantan-a">Jantan A</a>
+                        <a class="dropdown-item" href="./jantan-b">Jantan B</a>
+                        <a class="dropdown-item" href="./jantan-c">Jantan C</a>
+                        <a class="dropdown-item" href="./super-a">Jantan Super A</a>
+                        <a class="dropdown-item" href="./super-b">Jantan Super B</a>
+                    </div>
+                </li>
+            </ul>
+            <div class="social-part">
+                <i class="fa fa-facebook" aria-hidden="true"></i>
+                <i class="fa fa-twitter" aria-hidden="true"></i>
+                <i class="fa fa-instagram" aria-hidden="true"></i>
+            </div>
+        </div>
+    </nav>
+    <div id="gallery" class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
+        <div class="pswp__bg"></div>
+
+        <div class="pswp__scroll-wrap">
+
+            <div class="pswp__container">
+                <div class="pswp__item"></div>
+                <div class="pswp__item"></div>
+                <div class="pswp__item"></div>
+            </div>
+
+            <div class="pswp__ui pswp__ui--hidden">
+
+                <div class="pswp__top-bar">
+
+                    <div class="pswp__counter"></div>
+
+                    <button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
+
+                    <button class="pswp__button pswp__button--share" title="Share"></button>
+
+                    <button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
+
+                    <button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
+
+                    <div class="pswp__preloader">
+                        <div class="pswp__preloader__icn">
+                            <div class="pswp__preloader__cut">
+                                <div class="pswp__preloader__donut"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+
+                <div class="pswp__loading-indicator">
+                    <div class="pswp__loading-indicator__line"></div>
+                </div>
+
+                <div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
+                    <div class="pswp__share-tooltip">
+                    </div>
+                </div>
+
+                <button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)"></button>
+                <button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)"></button>
+                <div class="pswp__caption">
+                    <div class="pswp__caption__center">
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+
+    </div>
+
+    <div class="container">
+
+        <h1 class="font-weight-light text-center text-lg-left mt-4 mb-0">Ayo Berqurban !</h1>
+        <hr class="mt-1 mb-1"/>
+    </div>
+    <div class="container">
+        <t t-call="kambing.barang_dagang_all_content_template"></t>
+    </div>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js"></script> -->
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js"></script>
+    <script src="/kambing/static/site-assets/navigation.js"></script>
+    <script src="/kambing/static/site-assets/gallery.js"></script>
+
+</body>
+    </template>
+    <template id="barang_dagang_all_temp_old" name="Partner Page">
+        <t t-call="website.layout">
+            <div id="wrap">
+                <div class="oe_structure"/>
+                <div class="container">
+                    <div class="row">
+                        <t t-call="kambing.barang_dagang_all_content_template"></t>
+                    </div>
+                </div>
+                <div class="oe_structure"/>
+            </div>
+        </t>
+    </template>
+
+    <template id="barang_dagang_all_content_template" name="Partner Details">
+        <div class="row mw-100 no-gutters text-center demo-gallery">
+            <t t-foreach="barang_ids" t-as="barang_id">
+                <a class="col-lg-3 col-md-4 col-6 h-100" 
+                    t-att-href="'/web/image/barang.dagang/{}/image/{}-large.png'.format(barang_id.id, barang_id.id)" 
+                    data-size="1600x1067" 
+                    t-att-data-med="'/web/image/barang.dagang/{}/image_medium/{}-medium.png'.format(barang_id.id, barang_id.id)" 
+                    data-med-size="1024x683" 
+                    data-author="Thomas Lefebvre"
+                    >
+                    <div style="text-transform: capitalize" class="barang-state" t-esc="barang_id.state"/>
+                    <img class="img-fluid img-thumbnail" 
+                        t-att-src="'/web/image/barang.dagang/{}/image_thumb/{}-thumb.png'.format(barang_id.id, barang_id.id)" 
+                        />
+                    <div class="barang-name">
+                        <span t-esc="barang_id.name"/>
+                    </div>
+                    <div class="barang-kategori mb-4" t-esc="barang_id.kategori_id.name"/>
+                    <figure>It's a dummy caption. He who searches for meaning here will be sorely disappointed.</figure>
+                </a>
+            </t>
+            <t t-if="len(barang_ids) == 0">
+                <div class="mt-5 col-12">
+                    <h3 style="text-align:center">Mohon Maaf</h3>
+                    <h4 style="text-align:center" class="mb-5">Untuk saat ini, tidak tersedia barang pada kategori tersebut</h4>
+                    <img src="/kambing/static/none.png"/>
+                </div>
+            </t>
+        </div>
+
+    </template>
+
+</odoo>

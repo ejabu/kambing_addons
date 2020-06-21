@@ -1,0 +1,108 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <data>
+        <!-- List View -->
+        <record model="ir.ui.view" id="barang_dagang_tree">
+            <field name="name">barang.dagang.tree</field>
+            <field name="model">barang.dagang</field>
+            <field name="arch" type="xml">
+                <tree>
+                    <field name="name"/>
+                    <field name="state"/>
+                </tree>
+            </field>
+        </record>
+        
+        <!-- Form View -->
+        <record model="ir.ui.view" id="barang_dagang_form">
+            <field name="name">barang.dagang.form</field>
+            <field name="model">barang.dagang</field>
+            <field name="arch" type="xml">
+                <form>
+                    <header>
+                        <field name="state" widget="statusbar" clickable="True"/>
+                    </header>
+                    <sheet>
+                        <field name="image" type="base64" widget="image" class="oe_avatar"/>
+                        <div class="oe_title">
+                            <label string="Nama Barang"/>
+                            <h1>
+                                <field name="name"/>
+                            </h1>
+                        </div>
+                        <notebook>
+                            <page string="Info">
+                                <group>
+                                    <group>
+                                        <field name="kategori_id"/>
+                                    </group>
+                                    <group>
+                                        <field name="harga"/>
+                                        <label for="recheck_state"/>
+                                        <div class="o_row">
+                                            <field name="recheck_state" />
+                                            <button 
+                                                name="set_recheck_state" string="Recheck" 
+                                                type="object"
+                                                class="oe_inline fa fa-arrow-right oe_link"/>
+                                        </div>
+                                        <field name="state_index" readonly="1"/>
+                                    </group>
+                                </group>
+                            </page>
+                            <page string="Image">
+                                <group>
+                                    <field name="image_medium" type="base64"  widget="image" class="oe_avatar"/>
+                                    <field name="image_thumb" type="base64"  widget="image" class="oe_avatar"/>
+                                    <field name="image_web_string"/>
+                                </group>
+                            </page>
+                        </notebook>
+                        
+                        <notebook>
+                            <page string="Penjualan">
+                                <field name="nota_line_ids">
+                                    <tree create="false" edit="false" delete="false">
+                                        <field name="nota_id"/>
+                                        <field name="tanggal_pesan"/>
+                                        <field name="barang_id"/>
+                                        <field name="kategori_id"/>
+                                        <field name="tanggal_kirim"/>
+                                        <field name="name"/>
+                                    </tree>
+                                </field>
+                            </page>
+                        </notebook>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+        <record model="ir.actions.act_window" id="barang_dagang_action">
+            <field name="name">Barang Dagang</field>
+            <field name="res_model">barang.dagang</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">tree,form</field>
+        </record>
+
+        <menuitem 
+            id="main_barang_dagang"
+            name="Barang Dagang"
+        />
+
+        <menuitem 
+            id="menu_barang_dagang"
+            name="Barang Dagang"
+            parent="main_barang_dagang"
+        />
+
+        <menuitem 
+            id="submenu_barang_dagang"
+            name="Barang Dagang"
+            parent="data_header_menu"
+            sequence="10"
+            action="barang_dagang_action"
+        />
+
+    </data>
+</odoo>

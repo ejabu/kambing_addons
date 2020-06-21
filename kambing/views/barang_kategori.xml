@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <data>
+        <!-- List View -->
+        <record model="ir.ui.view" id="barang_kategori_tree">
+            <field name="name">barang.kategori.tree</field>
+            <field name="model">barang.kategori</field>
+            <field name="arch" type="xml">
+                <tree>
+                    <field name="name"/>
+                    <field name="slug_url"/>
+                </tree>
+            </field>
+        </record>
+        
+        <!-- Form View -->
+        <record model="ir.ui.view" id="barang_kategori_form">
+            <field name="name">barang.kategori.form</field>
+            <field name="model">barang.kategori</field>
+            <field name="arch" type="xml">
+                <form>
+                    <header>
+                    </header>
+                    <sheet>
+                        <group>
+                            <group>
+                                <field name="name"/>
+                            </group>
+                            <group>
+                                <field name="slug_url"/>
+                            </group>
+                        </group>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+        <record model="ir.actions.act_window" id="barang_kategori_action">
+            <field name="name">Barang Kategori</field>
+            <field name="res_model">barang.kategori</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">tree,form</field>
+        </record>
+
+        <menuitem 
+            id="main_barang_kategori"
+            name="Barang Kategori"
+        />
+
+        <menuitem 
+            id="menu_barang_kategori"
+            name="Barang Kategori"
+            parent="main_barang_kategori"
+        />
+
+        <menuitem 
+            id="submenu_barang_kategori"
+            name="Barang Kategori"
+            parent="data_header_menu"
+            sequence="20"
+            action="barang_kategori_action"
+        />
+
+    </data>
+</odoo>

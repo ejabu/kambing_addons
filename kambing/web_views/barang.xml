@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <template id="barang_dagang_template" name="Partner Page">
+        <t t-call="website.layout">
+            <div id="wrap">
+                <div class="oe_structure"/>
+                <div class="container">
+                    <div class="row">
+                        <t t-call="kambing.barang_dagang_detail_template"></t>
+                    </div>
+                </div>
+                <div class="oe_structure"/>
+            </div>
+        </t>
+    </template>
+
+    <template id="barang_dagang_detail_template" name="Partner Details">
+        <h1 class="col-md-12 text-center" t-field="partner.name"/>
+        <h2 class="col-md-12 text-center" t-field="partner.kategori_id.name"/>
+        <h2 class="col-md-12 text-center" t-esc="prev_url"/>
+        <h2 class="col-md-12 text-center" t-esc="next_url"/>
+        <style>
+a {
+  text-decoration: none;
+  display: inline-block;
+  padding: 8px 16px;
+}
+
+a:hover {
+  background-color: #ddd;
+  color: black;
+}
+
+.previous {
+  background-color: #f1f1f1;
+  color: black;
+}
+
+.next {
+  background-color: #4CAF50;
+  color: white;
+}
+
+.round {
+  border-radius: 50%;
+}
+</style>
+
+<h2>Previous and Next Buttons</h2>
+
+<a t-att-href="prev_url" class="previous">Previous</a>
+<a t-att-href="next_url" class="next">Next</a>
+
+<a t-att-href="prev_url" class="previous round">&#8249;</a>
+<a t-att-href="next_url" class="next round">&#8250;</a>
+
+
+        <div class="col-md-12">
+            <h2 class="text-center" t-field="partner.state"/>
+        </div>
+        <div class="col-md-12 text-center">
+            <img t-att-src="partner.image_web_string" t-att-title="cus-img-1" />
+        </div>
+        <div class="col-md-12 text-center">
+            <img t-att-src="partner.image_web_string" t-att-title="cus-img-2" />
+        </div>
+        <div class="col-md-12 text-center">
+            <img t-att-src="partner.image_web_string" t-att-title="cus-img-3" />
+        </div>
+        <div class="col-md-12 text-center">
+            <img src="/web/content/447" t-att-title="partner.name" />
+        </div>
+        <div class="col-md-12 text-center">
+            <img src="/web/binary/image?model=ir.attachment&amp;field=datas&amp;id=447" t-att-id="447" />
+        </div>
+
+    </template>
+
+</odoo>
