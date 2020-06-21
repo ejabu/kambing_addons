@@ -173,6 +173,7 @@
                     <div class="barang-name">
                         <span t-esc="barang_id.name"/>
                     </div>
+                    <div class="barang-kategori" t-esc="barang_id.bobot"/>
                     <div class="barang-kategori mb-4" t-esc="barang_id.kategori_id.name"/>
                     <figure>It's a dummy caption. He who searches for meaning here will be sorely disappointed.</figure>
                 </a>

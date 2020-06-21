@@ -38,6 +38,7 @@
                                     </group>
                                     <group>
                                         <field name="harga"/>
+                                        <field name="bobot"/>
                                         <label for="recheck_state"/>
                                         <div class="o_row">
                                             <field name="recheck_state" />

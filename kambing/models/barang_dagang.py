@@ -6,6 +6,7 @@ class BarangDagang(models.Model):
     _name = 'barang.dagang'
 
     name = fields.Char(string='Nama Barang')
+    bobot = fields.Char(string='Bobot')
 
     website_published = fields.Boolean("Web Published", default=True)
 
