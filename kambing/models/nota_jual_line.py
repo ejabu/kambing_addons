@@ -16,7 +16,8 @@ class NotaJualLine(models.Model):
     )
     nota_id = fields.Many2one(
         comodel_name='nota.jual',
-        string='Related Nota'
+        string='Related Nota',
+        ondelete='cascade',
         )
     tanggal_pesan = fields.Date(
         string='Tanggal Pesan', 

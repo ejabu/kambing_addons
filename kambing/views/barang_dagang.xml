@@ -21,6 +21,14 @@
                 <form>
                     <header>
                         <field name="state" widget="statusbar" clickable="True"/>
+                        <button name="recalc_images_size"
+                            string="Recalc"
+                            type="object"
+                        />
+                        <button name="reupload_images"
+                            string="Reupload"
+                            type="object"
+                        />
                     </header>
                     <sheet>
                         <field name="image" type="base64" widget="image" class="oe_avatar"/>
@@ -56,6 +64,11 @@
                                     <field name="image_medium" type="base64"  widget="image" class="oe_avatar"/>
                                     <field name="image_thumb" type="base64"  widget="image" class="oe_avatar"/>
                                     <field name="image_web_string"/>
+                                </group>
+                                <group>
+                                    <field name="image_size" readonly="1"/>
+                                    <field name="image_medium_size" readonly="1"/>
+                                    <field name="image_thumb_size" readonly="1"/>
                                 </group>
                             </page>
                         </notebook>

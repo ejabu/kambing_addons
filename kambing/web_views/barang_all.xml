@@ -161,9 +161,9 @@
             <t t-foreach="barang_ids" t-as="barang_id">
                 <a class="col-lg-3 col-md-4 col-6 h-100" 
                     t-att-href="'/web/image/barang.dagang/{}/image/{}-large.png'.format(barang_id.id, barang_id.id)" 
-                    data-size="1600x1067" 
+                    t-att-data-size="barang_id.image_size" 
                     t-att-data-med="'/web/image/barang.dagang/{}/image_medium/{}-medium.png'.format(barang_id.id, barang_id.id)" 
-                    data-med-size="1024x683" 
+                    t-att-data-med-size="barang_id.image_medium_size" 
                     data-author="Thomas Lefebvre"
                     >
                     <div style="text-transform: capitalize" class="barang-state" t-esc="barang_id.state"/>

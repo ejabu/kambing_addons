@@ -2,6 +2,12 @@ from odoo import models, fields, api
 from PIL import Image
 from odoo.tools import image
 
+
+import io
+import PIL
+from PIL import Image
+import base64
+
 class BarangDagang(models.Model):
     _name = 'barang.dagang'
 
@@ -15,17 +21,111 @@ class BarangDagang(models.Model):
     image_medium = fields.Binary('Medium', compute="_get_image", store=True, attachment=True)
     image_thumb = fields.Binary('Thumbnail', compute="_get_image", store=True, attachment=True)
 
+    image_size = fields.Char(string='Image Size', compute="_get_image", store=True,)
+    image_medium_size = fields.Char(string='Image Medium Size', compute="_get_image", store=True,)
+    image_thumb_size = fields.Char(string='Image Thumb Size', compute="_get_image", store=True,)
+
+    def recalc_images_size(self):
+        # for doc in self.search([]):
+        for doc in self:
+            if doc.image:
+                imgdata = base64.b64decode(doc.image)
+                im = Image.open(io.BytesIO(imgdata))
+                width, height = im.size
+                doc.image_size = "{}x{}".format(width, height)
+
+
+                
+                imgdata = base64.b64decode(doc.image_medium)
+                im = Image.open(io.BytesIO(imgdata))
+                width, height = im.size
+                doc.image_medium_size = "{}x{}".format(width, height)
+
+                imgdata = base64.b64decode(doc.image_thumb)
+                im = Image.open(io.BytesIO(imgdata))
+                width, height = im.size
+                doc.image_thumb_size = "{}x{}".format(width, height)
+            else:
+                doc.image_size = "256x256"
+                doc.image_medium_size = "256x256"
+                doc.image_thumb_size = "256x256"
+
+    def reupload_images(self):
+
+        # for doc in self.search([('image', '!=', False)]):
+        for doc in self.search([]):
+            if doc.image:
+                imgdata = base64.b64decode(doc.image)
+                img = Image.open(io.BytesIO(imgdata))
+
+                basewidth = 800
+                wpercent = (basewidth/float(img.size[0]))
+                hsize = int((float(img.size[1])*float(wpercent)))
+                
+                new_img = img.resize((basewidth,hsize), Image.ANTIALIAS)
+                buffered = io.BytesIO()
+                new_img.save(buffered, format="PNG")
+                new_img_str = base64.b64encode(buffered.getvalue())
+
+                doc.image_thumb = new_img_str
+
+
+                basewidth = 1200
+                wpercent = (basewidth/float(img.size[0]))
+                hsize = int((float(img.size[1])*float(wpercent)))
+                
+                new_img = img.resize((basewidth,hsize), Image.ANTIALIAS)
+                buffered = io.BytesIO()
+                new_img.save(buffered, format="PNG")
+                new_img_str = base64.b64encode(buffered.getvalue())
+
+                doc.image_medium = new_img_str
+
+            doc.recalc_images_size()
+
+
+
     @api.depends('image')
     def _get_image(self):
-        for record in self:
-            if record.image:
-                record.image_medium = image.crop_image(record.image, type='top', ratio=(4, 3), size=(500, 400))
-                record.image_thumb = image.crop_image(record.image, type='top', ratio=(4, 3), size=(200, 200))
-                record.image_web_string = "data:image/png;base64," + record.image_medium.decode("utf-8") 
+        for doc in self:
+            if doc.image:
+                imgdata = base64.b64decode(doc.image)
+                img = Image.open(io.BytesIO(imgdata))
+
+                width, height = img.size
+                doc.image_size = "{}x{}".format(width, height)
+
+                basewidth = 800
+                wpercent = (basewidth/float(img.size[0]))
+                hsize = int((float(img.size[1])*float(wpercent)))
+                
+                new_img = img.resize((basewidth,hsize), Image.ANTIALIAS)
+                width, height = new_img.size
+                doc.image_thumb_size = "{}x{}".format(width, height)
+                buffered = io.BytesIO()
+                new_img.save(buffered, format="PNG")
+                new_img_str = base64.b64encode(buffered.getvalue())
+
+                doc.image_thumb = new_img_str
+
+
+                basewidth = 1200
+                wpercent = (basewidth/float(img.size[0]))
+                hsize = int((float(img.size[1])*float(wpercent)))
+                
+                new_img = img.resize((basewidth,hsize), Image.ANTIALIAS)
+                width, height = new_img.size
+                doc.image_medium_size = "{}x{}".format(width, height)
+                buffered = io.BytesIO()
+                new_img.save(buffered, format="PNG")
+                new_img_str = base64.b64encode(buffered.getvalue())
+
+                doc.image_medium = new_img_str
+                # doc.image_web_string = "data:image/png;base64," + doc.image_medium.decode("utf-8")
             else:
-                record.image_medium = False
-                record.image_thumb = False
-                record.image_web_string = False
+                doc.image_medium = False
+                doc.image_thumb = False
+                doc.image_web_string = False
 
     @api.depends('state')
     def _get_state_index(self):

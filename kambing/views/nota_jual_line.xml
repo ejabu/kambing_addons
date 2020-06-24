@@ -6,7 +6,10 @@
             <field name="name">nota.jual.line.tree</field>
             <field name="model">nota.jual.line</field>
             <field name="arch" type="xml">
-                <tree>
+                <tree create="false" delete="false" edit="false">
+                    <field name="barang_id"/>
+                    <field name="kategori_id"/>
+                    <field name="tanggal_kirim"/>
                     <field name="name"/>
                 </tree>
             </field>
@@ -17,7 +20,7 @@
             <field name="name">nota.jual.line.form</field>
             <field name="model">nota.jual.line</field>
             <field name="arch" type="xml">
-                <form>
+                <form create="false" delete="false" edit="false">
                     <header>
                     </header>
                     <sheet>
