@@ -18,6 +18,11 @@ class NotaJual(models.Model):
         string='Pembeli'
         )
 
+    marketing_id = fields.Many2one(
+        comodel_name='pihak.marketing',
+        string='Marketing'
+        )
+
     phone = fields.Char(string='No Handphone', related='pembeli_id.phone')
     kota = fields.Char(string='Nama Kota', related='pembeli_id.kota')
 
@@ -31,3 +36,22 @@ class NotaJual(models.Model):
         inverse_name='nota_id',
         string='Riwayat Jual',
         )
+
+
+
+    jalan = fields.Char(string='Jalan')
+    rt = fields.Char(string='RT')
+    rw = fields.Char(string='RW')
+    no_rumah = fields.Char(string='No Rumah')
+    kelurahan = fields.Char(string='Kelurahan')
+    kecamatan = fields.Char(string='Kecamatan')
+    provinsi= fields.Char(string='Provinsi / Kabupaten')
+    kode_pos= fields.Char(string='Kode Pos')
+    penjelasan_alamat= fields.Text(string='Penjelasan Alamat')
+
+
+    # attachment_ids = fields.One2many('ir.attachment', 'res_id', domain=[('res_model', '=', 'nota.jual')], string='Attachments')
+    attachment_ids = fields.Many2many('ir.attachment', 'email_template_attachment_rel', 'email_template_id',
+                                      'attachment_id', 'Attachments',
+                                      help="You may attach files to this template, to be added to all "
+                                           "emails created from this template")

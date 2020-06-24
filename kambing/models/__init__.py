@@ -3,3 +3,4 @@ from . import barang_kategori
 from . import nota_jual
 from . import nota_jual_line
 from . import pihak_pembeli
+from . import pihak_marketing

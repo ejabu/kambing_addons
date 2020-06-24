@@ -13,6 +13,7 @@
     'views/nota_jual.xml',
     'views/nota_jual_line.xml',
     'views/pihak_pembeli.xml',
+    'views/pihak_marketing.xml',
     'views/barang_dagang.xml',
     'views/barang_kategori.xml',
     'web_views/barang.xml',
