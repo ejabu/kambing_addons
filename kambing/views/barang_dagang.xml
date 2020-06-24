@@ -31,7 +31,7 @@
                         />
                     </header>
                     <sheet>
-                        <field name="image" type="base64" widget="image" class="oe_avatar"/>
+                        <field name="image" type="base64" widget="image" class="oe_avatar" options='{"preview_image":"image_thumb"}'/>
                         <div class="oe_title">
                             <label string="Nama Barang"/>
                             <h1>
@@ -61,8 +61,8 @@
                             </page>
                             <page string="Image">
                                 <group>
-                                    <field name="image_medium" type="base64"  widget="image" class="oe_avatar"/>
-                                    <field name="image_thumb" type="base64"  widget="image" class="oe_avatar"/>
+                                    <field name="image_medium" type="base64"  widget="image" class="oe_avatar" options='{"preview_image":"image_thumb"}'/>
+                                    <field name="image_thumb" type="base64"  widget="image" class="oe_avatar" options='{"preview_image":"image_thumb"}'/>
                                     <field name="image_web_string"/>
                                 </group>
                                 <group>
