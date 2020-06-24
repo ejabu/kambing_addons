@@ -58,7 +58,7 @@ class BarangDagang(models.Model):
                 imgdata = base64.b64decode(doc.image)
                 img = Image.open(io.BytesIO(imgdata))
 
-                basewidth = 800
+                basewidth = 240
                 wpercent = (basewidth/float(img.size[0]))
                 hsize = int((float(img.size[1])*float(wpercent)))
                 
@@ -95,7 +95,7 @@ class BarangDagang(models.Model):
                 width, height = img.size
                 doc.image_size = "{}x{}".format(width, height)
 
-                basewidth = 800
+                basewidth = 240
                 wpercent = (basewidth/float(img.size[0]))
                 hsize = int((float(img.size[1])*float(wpercent)))
                 
