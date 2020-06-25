@@ -24,10 +24,12 @@
                         <button name="recalc_images_size"
                             string="Recalc"
                             type="object"
+                            groups="base.group_no_one"
                         />
                         <button name="reupload_images"
                             string="Reupload"
                             type="object"
+                            groups="base.group_no_one"
                         />
                     </header>
                     <sheet>
@@ -45,7 +47,8 @@
                                         <field name="kategori_id"/>
                                     </group>
                                     <group>
-                                        <field name="harga"/>
+                                        <field name="harga" widget="monetary" options="{'currency_field': 'currency_id'}"/>
+                                        <field name="currency_id" invisible="1"/>
                                         <field name="bobot"/>
                                         <label for="recheck_state"/>
                                         <div class="o_row">
@@ -78,8 +81,8 @@
                                 <field name="nota_line_ids">
                                     <tree create="false" edit="false" delete="false">
                                         <field name="nota_id"/>
+                                        <field name="marketing_id"/>
                                         <field name="tanggal_pesan"/>
-                                        <field name="barang_id"/>
                                         <field name="kategori_id"/>
                                         <field name="tanggal_kirim"/>
                                         <field name="name"/>

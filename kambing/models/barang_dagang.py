@@ -161,6 +161,16 @@ class BarangDagang(models.Model):
         )
 
     harga = fields.Float(string='Harga')
+    currency_id = fields.Many2one(
+        'res.currency', 
+        string='Currency', 
+        compute='get_currency',
+        )
+
+    def get_currency(self):
+        for doc in self:
+            doc.currency_id = self.env.user.company_id.currency_id
+
 
     nota_line_ids = fields.One2many(
         comodel_name='nota.jual.line',

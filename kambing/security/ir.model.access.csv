@@ -4,3 +4,4 @@ id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
 159275173196595779,random,kambing.model_nota_jual,base.group_user,1,1,1,1
 159275173251788494,random,kambing.model_nota_jual_line,base.group_user,1,1,1,1
 159275173305820842,random,kambing.model_pihak_pembeli,base.group_user,1,1,1,1
+159308245716285103,random,kambing.model_pihak_marketing,base.group_user,1,1,1,1

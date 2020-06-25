@@ -16,9 +16,30 @@ class NotaJualLine(models.Model):
     )
     nota_id = fields.Many2one(
         comodel_name='nota.jual',
-        string='Related Nota',
+        string='No. Nota Jual',
         ondelete='cascade',
         )
+    
+    currency_id = fields.Many2one(
+        'res.currency', 
+        string='Currency', 
+        compute='get_currency',
+        )
+
+    def get_currency(self):
+        for doc in self:
+            doc.currency_id = self.env.user.company_id.currency_id
+
+    harga = fields.Float(
+        string='Harga',
+        related="barang_id.harga",
+        )
+    marketing_id = fields.Many2one(
+        comodel_name='pihak.marketing',
+        string='Marketing',
+        related="nota_id.marketing_id",
+        )
+
     tanggal_pesan = fields.Date(
         string='Tanggal Pesan', 
         default=fields.Date.today(),

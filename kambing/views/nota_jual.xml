@@ -71,6 +71,8 @@
                                 <field name="line_ids" >
                                     <tree editable="bottom">
                                         <field name="barang_id"/>
+                                        <field name="harga" sum="Total" widget="monetary" options="{'currency_field': 'currency_id'}"/>
+                                        <field name="currency_id" invisible="1"/>
                                         <field name="kategori_id"/>
                                         <field name="tanggal_kirim"/>
                                         <field name="name"/>
