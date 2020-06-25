@@ -58,6 +58,8 @@
                         <a class="dropdown-item" href="./jantan-b">Jantan B</a>
                         <a class="dropdown-item" href="./jantan-c">Jantan C</a>
                         <a class="dropdown-item" href="./super-a">Jantan Super A</a>
+                        <a class="dropdown-item" href="./super-b">Jantan Super B</a>
+                        <a class="dropdown-item" href="./super-c">Jantan Super C</a>
                         <a class="dropdown-item" href="./">Semua Kategori</a>
                     </div>
                 </li>

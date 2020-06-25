@@ -1,8 +1,8 @@
 from odoo import http
 from odoo.addons.http_routing.models.ir_http import unslug
 from odoo.http import request
-from odoo.addons.web.controllers.main import Home
-
+# from odoo.addons.web.controllers.main import Home
+from odoo.addons.website.controllers.main import Home
 
 class MyHome(Home):
 
