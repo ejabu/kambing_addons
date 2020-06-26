@@ -47,9 +47,15 @@ class MyHome(Home):
                 page_displays.append(oix)
 
         if 1 not in page_displays:
-            page_displays.insert(0, 1)
+            if len(page_displays) > 4:
+                page_displays[0] = 1
+            else:
+                page_displays.insert(0, 1)
         if max_page_index not in page_displays:
-            page_displays.append(max_page_index)
+            if len(page_displays) > 4:
+                page_displays[len(page_displays)-1] = max_page_index
+            else:
+                page_displays.append(max_page_index)
         if item_count < PAGELIMIT:
             next_page_index = 0
         else:

@@ -20,7 +20,11 @@
 
         childElements = el.children;
 
-        size = el.getAttribute("data-size").split("x");
+        if (el.getAttribute("data-size")) {
+            size = el.getAttribute("data-size").split("x");
+        } else {
+            size = [64, 64]            
+        }
 
         // create slide object
         item = {
@@ -45,7 +49,11 @@
 
         var mediumSrc = el.getAttribute("data-med");
         if (mediumSrc) {
-          size = el.getAttribute("data-med-size").split("x");
+          if (el.getAttribute("data-med-size")) {
+            size = el.getAttribute("data-med-size").split("x");
+          } else {
+            size = [800, 800]
+          }
           // "medium-sized" image
           item.m = {
             src: mediumSrc,
