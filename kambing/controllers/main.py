@@ -1,19 +1,72 @@
 from odoo import http
 from odoo.addons.http_routing.models.ir_http import unslug
 from odoo.http import request
-# from odoo.addons.web.controllers.main import Home
+
+
+import math
 from odoo.addons.website.controllers.main import Home
+
+PAGELIMIT = 2
 
 class MyHome(Home):
 
-    @http.route(['/', '/index', '/home'], type='http', website=True, auth='public')
-    def index(self, **kw):
+    @http.route(['/', '/<kategori_name>'], type='http', website=True, auth='public')
+    def index(self, kategori_name=False, **kwargs):
         search_query = []
-        order = "name"
-        barang_ids = request.env['barang.dagang'].sudo().search(search_query, order=order)
+        slug = '/'
+        if kategori_name:
+            kategori_search_query = [('slug_url', '=', kategori_name.lower())]
+            kategori_id = request.env['barang.kategori'].sudo().search(kategori_search_query, limit=1)
+            if kategori_id:
+                search_query.append(('kategori_id', '=', kategori_id.id))
+                slug = slug + kategori_name
+
+        page_number = kwargs.get('page', '1')
+        if page_number.isdigit():
+            page_number = int(page_number)
+            if page_number < 1:
+                page_number = 1
+            if page_number > 1000:
+                page_number = 1000
+        else:
+            page_number = 1
+        offset = (page_number - 1) * PAGELIMIT
+        BarangDagang = request.env['barang.dagang'].sudo()
+        barang_ids = BarangDagang.search(search_query, offset=offset, limit=PAGELIMIT)
         barang_ids = barang_ids.sorted(key=lambda r: r.state_index)
+
+        item_count = len(barang_ids)
+        total_item_count = BarangDagang.search_count(search_query)
+
+        max_page_index = math.ceil(total_item_count / PAGELIMIT)
+
+        page_displays = []
+        for oix in range(5):
+            oix = page_number + oix - 2
+            if oix > 0 and oix <= max_page_index:
+                page_displays.append(oix)
+
+        if 1 not in page_displays:
+            page_displays.insert(0, 1)
+        if max_page_index not in page_displays:
+            page_displays.append(max_page_index)
+        if item_count < PAGELIMIT:
+            next_page_index = 0
+        else:
+            next_page_index = page_number + 1
+        
+        if page_number > 1:
+            prev_page_index = page_number - 1
+        else:
+            prev_page_index = 0
+
         values = {
             'barang_ids': barang_ids,
+            'next_page_index': next_page_index,
+            'prev_page_index': prev_page_index,
+            'slug': slug,
+            'page_displays': page_displays,
+            'page_number': page_number,
         }
         return request.render("kambing.barang_dagang_all_temp", values)
 
@@ -50,26 +103,26 @@ class MyHome(Home):
                 return request.render("kambing.barang_dagang_template", values)
         return request.not_found()
 
-    @http.route([
-        '/<kategori_name>',
-    ], type='http', auth="public", website=True)
-    def barang_all(self, kategori_name=False, **post):
-        search_query = []
-        if kategori_name:
-            print('Flag Here')
-            kategori_search_query = [('slug_url', '=', kategori_name.lower())]
-            kategori_id = request.env['barang.kategori'].sudo().search(kategori_search_query, limit=1)
-            if kategori_id:
-                search_query.append(('kategori_id', '=', kategori_id.id))
-            else:
-                values = {
-                    'barang_ids': [],
-                }
-                return request.render("kambing.barang_dagang_all_temp", values)
-        order = "name"
-        barang_ids = request.env['barang.dagang'].sudo().search(search_query, order=order)
-        barang_ids = barang_ids.sorted(key=lambda r: r.state_index)
-        values = {
-            'barang_ids': barang_ids,
-        }
-        return request.render("kambing.barang_dagang_all_temp", values)
+    # @http.route([
+    #     '/<kategori_name>',
+    # ], type='http', auth="public", website=True)
+    # def barang_all(self, kategori_name=False, **post):
+    #     search_query = []
+    #     if kategori_name:
+    #         print('Flag Here')
+    #         kategori_search_query = [('slug_url', '=', kategori_name.lower())]
+    #         kategori_id = request.env['barang.kategori'].sudo().search(kategori_search_query, limit=1)
+    #         if kategori_id:
+    #             search_query.append(('kategori_id', '=', kategori_id.id))
+    #         else:
+    #             values = {
+    #                 'barang_ids': [],
+    #             }
+    #             return request.render("kambing.barang_dagang_all_temp", values)
+    #     order = "name"
+    #     barang_ids = request.env['barang.dagang'].sudo().search(search_query, order=order)
+    #     barang_ids = barang_ids.sorted(key=lambda r: r.state_index)
+    #     values = {
+    #         'barang_ids': barang_ids,
+    #     }
+    #     return request.render("kambing.barang_dagang_all_temp", values)

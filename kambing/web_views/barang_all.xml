@@ -159,6 +159,7 @@
     </template>
 
     <template id="barang_dagang_all_content_template" name="Partner Details">
+        <div>
         <div class="row mw-100 no-gutters text-center demo-gallery">
             <t t-foreach="barang_ids" t-as="barang_id">
                 <a class="col-lg-3 col-md-4 col-6 h-100" 
@@ -188,7 +189,44 @@
                 </div>
             </t>
         </div>
-
+        <div>
+            <nav aria-label="Page navigation example">
+                <ul class="pagination">
+                    <t t-if="prev_page_index">
+                        <li class="page-item">
+                            <a class="page-link" 
+                                href="#"
+                                t-att-href="'{}?page={}'.format(slug, prev_page_index)" 
+                            >
+                            Previous
+                            </a>
+                        </li>
+                    </t>
+                    <t t-foreach="page_displays" t-as="page_index">
+                        <li 
+                            t-att-class=" 'page-item active' if (page_index == page_number) else 'page-item'"
+                        >
+                            <a class="page-link"
+                             t-att-href="'{}?page={}'.format(slug, page_index)" 
+                             t-esc="'{}'.format(page_index)" 
+                             >
+                             </a>
+                        </li>
+                    </t>
+                    <t t-if="next_page_index">
+                        <li class="page-item">
+                            <a class="page-link" 
+                                href="#"
+                                t-att-href="'{}?page={}'.format(slug, next_page_index)" 
+                            >
+                            Next
+                            </a>
+                        </li>
+                    </t>
+                </ul>
+            </nav>
+        </div>
+        </div>
     </template>
 
 </odoo>
