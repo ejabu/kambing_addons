@@ -760,9 +760,9 @@ img.img--with_border {
   padding: 0px 10px;
   margin-bottom: 2px;
 }
-.img-thumbnail {
+/* .img-thumbnail {
   min-width: 183px !important;
-}
+} */
 a {
     color: #222;
     text-decoration: none !important;

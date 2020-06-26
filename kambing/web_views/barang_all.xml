@@ -170,9 +170,36 @@
                     data-author="Thomas Lefebvre"
                     >
                     <div style="text-transform: capitalize" class="barang-state" t-esc="barang_id.state"/>
-                    <img class="img-fluid img-thumbnail" 
-                        t-att-src="'/web/image/barang.dagang/{}/image_thumb/{}-thumb.png'.format(barang_id.id, barang_id.id)" 
-                        />
+                    <div style="display: relative;">
+                        <img class="img-fluid img-thumbnail" 
+                            t-att-src="'/web/image/barang.dagang/{}/image_thumb/{}-thumb.png'.format(barang_id.id, barang_id.id)" 
+                            />
+                        <t t-if="barang_id.state == 'terjual'">
+                            <div style="
+                                background-color: #b3070d;
+                                font-weight: bold;
+                                font-size: 8px;
+                                padding: 5px 12px;
+                                opacity: 0.9;
+                                border-radius: 15px;
+                                color: #fdd571;
+                                position: absolute;
+                                top: 19%;
+                                left: 50%;
+                                z-index: 100;
+                                transform: rotateY(0deg) rotate(16deg) translate(42%, -109%);
+                                -ms-transform: translate(-50%, -50%);
+                                text-align: center;">
+                                <div style="
+                                    letter-spacing: 0.5em;
+                                    margin-right: -0.5em;"
+                                    >
+                                    SOLD
+                                </div>
+                            </div>
+                        </t>
+                    </div>
+                    
                     <div class="barang-name">
                         <span t-esc="barang_id.name"/>
                     </div>
