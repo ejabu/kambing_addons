@@ -6,7 +6,7 @@ from odoo.http import request
 import math
 from odoo.addons.website.controllers.main import Home
 
-PAGELIMIT = 2
+PAGELIMIT = 20
 
 class MyHome(Home):
 
