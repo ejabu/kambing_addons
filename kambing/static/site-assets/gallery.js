@@ -184,7 +184,7 @@
                         <div class="dropdown-divider mb-2"></div>
                         <h6 class="mt-2 card-subtitle mb-2 text-muted">${item.kategori || '-'}</h6>
                         <a href="#" class="card-link ${statusClass} text-capitalize">${item.status || '-'}</a>
-                        <p class="card-text">Bobot ${item.bobot || '-'}. Harga termasuk ongkir* Rp ${ribuan} </p>
+                        <p class="card-text">Bobot ${item.bobot || '-'}. Harga belum termasuk ongkir* Rp ${ribuan} </p>
                     </div>
                     <div class="card-footer">* Jabodetabek</div>
                 </div>
