@@ -167,7 +167,11 @@
                     t-att-data-size="barang_id.image_size" 
                     t-att-data-med="'/web/image/barang.dagang/{}/image_medium/{}-medium.png'.format(barang_id.id, barang_id.id)" 
                     t-att-data-med-size="barang_id.image_medium_size" 
-                    data-author="Thomas Lefebvre"
+                    t-att-data-no="barang_id.name"
+                    t-att-data-kategori="barang_id.kategori_id.name"
+                    t-att-data-bobot="barang_id.bobot"
+                    t-att-data-status="barang_id.state"
+                    t-att-data-harga="barang_id.harga"
                     >
                     <div style="text-transform: capitalize" class="barang-state" t-esc="barang_id.state"/>
                     <div style="display: relative;">

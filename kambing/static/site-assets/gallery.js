@@ -27,7 +27,11 @@
           src: el.getAttribute("href"),
           w: parseInt(size[0], 10),
           h: parseInt(size[1], 10),
-          author: el.getAttribute("data-author"),
+          no: el.getAttribute('data-no'),
+          kategori: el.getAttribute('data-kategori'),
+          bobot: el.getAttribute('data-bobot'),
+          status: el.getAttribute('data-status'),
+          harga: el.getAttribute('data-harga'),
         };
 
         item.el = el; // save link to element for getThumbBoundsFn
@@ -165,14 +169,28 @@
           };
         },
 
-        addCaptionHTMLFn: function (item, captionEl, isFake) {
-          if (!item.title) {
-            captionEl.children[0].innerText = "";
-            return false;
-          }
-          captionEl.children[0].innerHTML =
-            item.title + "<br/><small>Photo: " + item.author + "</small>";
-          return true;
+        addCaptionHTMLFn: function(item, captionEl, isFake) {
+            var bilangan = item.harga || '0';
+            bilangan = parseInt(bilangan)
+            var reverse = bilangan.toString().split('').reverse().join('')
+            var ribuan = reverse.match(/\d{1,3}/g);
+            ribuan = ribuan.join('.').split('').reverse().join('');
+            ribuan = ribuan == '0' ? '-' : ribuan
+            var statusClass = item.status == "terjual" ? "text-danger": "text-primary"
+            captionBox = `
+                <div class="card" style="width: 18rem;">
+                    <div class="card-body">
+                        <h5 class="card-title mb-2 text-dark font-weight-bold">${item.no || '-'}</h5>
+                        <div class="dropdown-divider mb-2"></div>
+                        <h6 class="mt-2 card-subtitle mb-2 text-muted">${item.kategori || '-'}</h6>
+                        <a href="#" class="card-link ${statusClass} text-capitalize">${item.status || '-'}</a>
+                        <p class="card-text">Bobot ${item.bobot || '-'}. Harga termasuk ongkir* Rp ${ribuan} </p>
+                    </div>
+                    <div class="card-footer">* Jabodetabek</div>
+                </div>
+            `
+            captionEl.children[0].innerHTML = captionBox
+            return true;
         },
       };
 
